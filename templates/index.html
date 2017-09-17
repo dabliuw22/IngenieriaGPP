@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock %}
+
+{%  block content %}
+<div class="main">
+	{% if noticias %}
+	<div id="inicio" class="main">
+		<div>
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			  	<!-- Indicators -->
+			  	<ol class="carousel-indicators">
+			  		{% for noticia in noticias %}
+			  			{% if forloop.counter0 %}
+			  				<li data-target="#carousel-example-generic" data-slide-to="{{noticia.pk}}" class="active"></li>
+			  			{% else %}
+			  				<li data-target="#carousel-example-generic" data-slide-to="{{noticia.pk}}"></li>
+			  			{% endif %}
+			    	{% endfor %}
+			  	</ol>
+			 
+			  	<!-- Wrapper for slides -->
+			  	<div class="carousel-inner">
+			  		{% for noticia in noticias %}
+			  			{% if forloop.counter0 == 0 %}
+			  				<div class="item active" style="background: url({{MEDIA_URL}}{{noticia.foto}})">
+					      		<img src="{{MEDIA_URL}}{{noticia.foto}}" class="img-responsive img-rounded" alt="">
+					      		<div class="carousel-caption">
+					      			<h3>{{noticia.titulo}}</h3>
+					      		</div>
+			    			</div>
+			  			{% else %}
+			  				<div class="item" style="background: url({{MEDIA_URL}}{{noticia.foto}})">
+					      		<img src="{{MEDIA_URL}}{{noticia.foto}}" class="img-responsive img-rounded" alt="">
+					      		<div class="carousel-caption">
+					      			<h3>{{noticia.titulo}}</h3>
+					      		</div>
+					    	</div>
+			  			{% endif %}
+			  		{% endfor %}
+			  	</div>
+			  	<!-- Controls -->
+			  	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			    	<span class="glyphicon glyphicon-chevron-left"></span>
+			  	</a>
+			  	<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			    	<span class="glyphicon glyphicon-chevron-right"></span>
+			  	</a>
+			</div> <!-- Carousel -->
+		</div>
+		{% endif %}
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contenedor">
+				<div class="jumbotron centro">
+				  	<h1 class="text-blue">Ingenier&iacute;a GPP</h1>
+				  	<h2 class="text-blue">Ingenier&iacute;a, Gesti&oacute;n de Proyectos y Productos</h2>
+				  	<br>
+				  	<p>Somos especialista en la venta y gestión de proyectos, servicios y productos</p>
+				  	<p><a class="btn btn-primary btn-lg text-blue fondo-transp" href="#" role="button">Learn more</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

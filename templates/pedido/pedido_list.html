@@ -1,0 +1,95 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock%}
+
+{% block content %}
+<div id="iniciotwo" class="main">
+	<div class="row">
+		{% if pedidos %}
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			{% for pedido in pedidos %}
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			  	<div class="panel panel-default">
+			    	<div class="panel-heading" role="tab" id="heading{{pedido.pk}}">
+			      		<h4 class="panel-title">
+			        		<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{pedido.pk}}" aria-expanded="false" aria-controls="collapse{{pedido.pk}}">{{pedido}} - <strong>{{pedido.fecha|date:"D d M Y H:i"}}</strong></a></h4>
+			    	</div>
+			    	<div id="collapse{{pedido.pk}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{pedido.pk}}">
+			      		<div class="panel-body">
+			      			<div class="row">
+			      				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			      					<table class="table table-hover table-bordered">
+										<thead>
+											<tr>
+												<th class="centro">Detalle</th>
+												<th class="centro">Valor</th>
+											</tr>
+										</thead>
+										<tbody class="table-striped">
+											<td class="centro">Proveedor</td>
+											<td class="centro">{{pedido.proveedor}}</td>
+										</tbody>
+										<tbody class="table-striped">
+											<td class="centro">Pais</td>
+											<td class="centro">{{pedido.ciudad.pais}}</td>
+										</tbody>
+										<tbody class="table-striped">
+											<td class="centro">Ciudad</td>
+											<td class="centro">{{pedido.ciudad}}</td>
+										</tbody>
+										<tbody class="table-striped">
+											<td class="centro">Direcci&oacute;n</td>
+											<td class="centro">{{pedido.direccion}}</td>
+										</tbody>
+									</table>
+					      			{% if pedido.detallepedido_set.all %}
+						      			<table class="table table-hover table-bordered">
+											<thead>
+												<tr>
+													<th class="centro">Producto</th>
+													<th class="centro">Cantidad</th>
+													<th class="centro">Valor Unidad</th>
+													<th class="centro">Valor</th>
+												</tr>
+											</thead>
+						      				{% for detalle in pedido.detallepedido_set.all %}
+							      				<tbody class="table-striped">
+													<td class="centro">{{detalle.producto}}</td>
+													<td class="centro">{{detalle.cantidad}}</td>
+													<td class="centro">{{detalle.producto.precio}}</td>
+													<td class="centro">{{detalle.get_valor}}</td>
+												</tbody>
+						      				{% endfor %}
+						      			</table>
+					      			{% endif %}
+			      				</div>
+			      				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+			      					<p class="centro"><a class="btn btn-primary text-blue fondo-transp" href="{% url 'bien:pedido_update' pedido.pk %}" role="button">Editar</a></p>
+			      					<p class="centro"><a class="btn btn-danger dropdown-toggle" href="{% url 'bien:pedido_delete' pedido.pk %}" role="button">Eliminar</a></p>
+			      				</div>
+			      			</div>
+			      		</div>
+			    	</div>
+			  	</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+		{% else %}
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="jumbotron">
+				<h1 class="centro">No hay pedidos!</h1>
+				<p class="centro">Agrega un pedido</p>
+				<p class="centro"><a class="btn btn-primary btn-lg" href="{% url 'bien:pedido_create' %}" role="button">Crear Pedido</a></p>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+	<div id="iniciotwo" class="main">
+		<div class="row">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				{% if object %}
+				<div class="panel panel-info">
+				  	<div class="panel-heading">
+				    	<h3 class="panel-title centro">{{ bien.nombre|escape|title }}</h3>
+				  	</div>
+				  	<div class="panel-body">
+				  		<div align="center">
+				  			<img src="{{ bien.imagen.url }}" class="img-rounded img-responsive">
+				  		</div>
+				  		<div></div>
+				  		<div>
+				  			<br>
+				  			<i><p class="centro">{{ bien.descripcion|escape }}</p></i>
+				  		</div>
+				  		{% if object.video %}
+				  		<div align="center">
+				  			<div class="embed-responsive embed-responsive-16by9">
+  								<iframe class="embed-responsive-item" src="{{object.video}}" allowfullscreen></iframe>
+							</div>
+				  		</div>
+				  		{% endif %}
+				  		<div>
+				  			<table class="table table-hover table-bordered">
+				  				<thead>
+				  					<tr>
+				  						<th class="centro">Nombre</th>
+				  						<th class="centro">Referencia</th>
+				  					</tr>
+				  				</thead>
+				  				<tbody class="table-striped">
+				  					<td class="centro">{{bien.nombre}}</td>
+				  					<td class="centro">{{object.pk}}</td>
+				  				</tbody>
+				  			</table>
+				  			<table class="table table-hover table-bordered">
+				  				<thead>
+				  					<tr>
+				  						<th class="centro">Costos</th>
+				  						<th class="centro">Valor</th>
+				  					</tr>
+				  				</thead>
+				  				<tbody class="table-striped">
+				  					<td class="centro">Base</td>
+				  					<td class="centro">$ {{object.costo}}</td>
+				  				</tbody>
+				  				<tbody>
+				  					<td class="centro">Extra</td>
+				  					<td class="centro">$ {{object.extra}}</td>
+				  				</tbody>
+				  				<tbody class="table-striped">
+				  					<td class="centro">Total</td>
+				  					<td class="centro">$ {{object.costo_total}}</td>
+				  				</tbody>
+				  			</table>
+				  			<table class="table table-hover table-bordered">
+				  				<thead>
+				  					<tr>
+				  						<th class="centro">Proveedor</th>
+				  						<th class="centro">e-mail</th>
+				  					</tr>
+				  				</thead>
+				  				{% for proveedor in proveedores %}
+				  				<tbody class="table-striped">
+				  					<td class="centro">{{proveedor.nombre}}</td>
+				  					<td class="centro">{{proveedor.email}}</td>
+				  				</tbody>
+				  				{% endfor %}
+				  			</table>
+				  		</div>
+				  	</div>
+				</div>
+			{% endif %}
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div id="iniciotwo" class="row">
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title centro">Nueva Orden</h3>
+			</div>
+			<div class="panel-body bordes">
+				<form method="POST">
+				{% csrf_token %}
+				
+					<div class="row">
+						<div class="form-group">
+							<div class="row">
+								<label>Cliente</label>
+							</div>
+							<div class="row">
+								<div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
+									<select id="{{form.cliente.id_for_label}}" name="cliente" class="form-control">
+										<option id="0" value="" selected="selected">---------</option>
+										{% for cliente in clientes %}
+											<option value="{{cliente.pk}}">{{cliente}}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+									<p class="centro"><a class="btn btn-primary text-blue fondo-transp" href="{% url 'bien:cliente_create'%}" role="button">Crear Cliente</a></p>
+								</div>
+							</div>
+							<ol style="list-style-type:none">
+							{% for error in form.cliente.errors%}
+								<li>
+									<div class="alert alert-danger" role="alert">
+  										<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  										<span class="sr-only">Error:</span>
+  										{{ error|escape }}
+  									</div>
+								</li>
+							{% endfor %}
+							</ol>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<label>Pais</label>
+							<select id="id_pais" name="pais" class="form-control">
+								<option id="0" value="">---------</option>
+								{% for pais in paises %}
+									<option value="{{pais.pk}}">{{pais.nombre}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div id="ciudades" class="row">
+					</div>
+					<ol style="list-style-type:none">
+					{% for error in form.ciudad.errors%}
+						<li>
+							<div class="alert alert-danger" role="alert">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								<span class="sr-only">Error:</span>
+								Ciudad: {{ error|escape }}
+  							</div>
+						</li>
+					{% endfor %}
+					</ol>
+					<div id="direccion" class="row">
+						<!--
+						<div class="form-group">
+							<label>Direccion</label>
+							<input id="{{form.direccion.id_for_label}}" name="{{form.direccion.html_name}}" type="text" class="form-control" placeholder="Direcci&oacute;n" maxlength="250">
+						</div>-->
+					</div>
+					<ol style="list-style-type:none">
+					{% for error in form.direccion.errors%}
+						<li>
+							<div class="alert alert-danger" role="alert">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								<span class="sr-only">Error:</span>
+								Direcci&oacute;n: {{ error|escape }}
+  							</div>
+						</li>
+					{% endfor %}
+					</ol>
+					<div class="row">
+						<div class="form-group">
+							<label>Servicios/Proyectos</label>
+							<div class="centro">
+								{{form.servicios}}
+							</div>
+							<p>Para seleccionar más de uni servicio presione ctrl</p>
+						</div>
+					</div>
+					<div class="row centro">
+						<input type="submit" class="btn btn-primary text-blue fondo-transp" value="Guardar">
+					</div>
+				</form>	
+			</div>
+		</div>
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

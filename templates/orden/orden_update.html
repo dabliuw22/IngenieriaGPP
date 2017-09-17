@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div id="iniciotwo" class="row">
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title centro">Orden</h3>
+			</div>
+			<div class="panel-body bordes">
+				<form method="POST">
+					{% csrf_token %}
+					{{form.as_p}}
+					<div class="row centro">
+						<input type="submit" class="btn btn-primary text-blue fondo-transp" value="Guardar y Editar Productos">
+					</div>
+				</form>	
+			</div>
+		</div>
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

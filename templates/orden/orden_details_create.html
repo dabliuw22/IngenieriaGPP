@@ -1,0 +1,127 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div id="iniciotwo" class="row">
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title centro">Agregar Producto</h3>
+			</div>
+			<div class="panel-body bordes">
+				<form method="POST">
+					{% csrf_token %}
+					<!--
+					<div class="row">
+						<div class="form-group">
+							<label>Orden</label>
+							<input class="form-control" id="{{form.orden.id_for_label}}" name="{{form.orden.html_name}}" type="number" value="{{orden.pk}}" disabled>
+						</div>
+					</div>-->
+					<div class="row">
+						<div class="form-group">
+							<label>Producto</label>
+							{{form.producto}}
+						</div>
+						<ol>
+							{% for error in form.producto.errors %}
+								<li>
+									<div class="alert alert-danger" role="alert">
+  										<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  										<span class="sr-only">Error:</span>
+  										{{ error|escape }}
+  									</div>
+								</li>
+							{% endfor %}
+						</ol>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<label>Cantidad</label>
+							{{form.cantidad}}
+						</div>
+						<ol>
+							{% for error in form.cantidad.errors %}
+								<li>
+									<div class="alert alert-danger" role="alert">
+  										<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  										<span class="sr-only">Error:</span>
+  										{{ error|escape }}
+  									</div>
+								</li>
+							{% endfor %}
+						</ol>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="row centro">
+							<input type="submit" class="btn btn-primary text-blue fondo-transp" value="Agregar">
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="row centro">
+							{% if object_list %}
+								<p class="centro"><a class="btn btn-primary text-blue fondo-transp" href="{% url 'bien:orden_factura_send' object.pk %}" role="button">Finalizar</a></p>
+							{% endif %}
+						</div>
+					</div>
+				</form>	
+			</div>
+		</div>
+		{% if object_list %}
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th class="centro">Producto</th>
+					<th class="centro">Cantidad</th>
+					<th class="centro">Valor</th>
+					<th class="centro">Acci&oacute;n</th>
+				</tr>
+			</thead>
+			{% for producto in object_list %}
+			<tbody class="table-striped">
+				<td class="centro">{{producto.producto}}</td>
+				<td class="centro">{{producto.cantidad}}</td>
+				<td class="centro">{{producto.get_valor}}</td>
+				<td class="centro">
+					<p class="centro"><a class="btn btn-danger dropdown-toggle" href="{% url 'bien:orden_details_delete' producto.pk %}" role="button">Eliminar</a></p>
+					<!--<button type="button" class="btn btn-danger dropdown-toggle" href="{% url 'bien:orden_details_delete' producto.pk %}">
+					Eliminar</button>-->
+					<!-- Modal -->
+				  	<div class="modal fade" id="myModal{{producto.pk}}" role="dialog">
+				    	<div class="modal-dialog modal-sm">
+				      		<div class="modal-content">
+					        	<div class="modal-header">
+					          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+					          		<h4 class="modal-title">Eliminar</h4>
+					        	</div>
+				        		<div class="modal-body">
+				          			<p>Desea eliminar {{producto.producto}} de la orden</p>
+				        		</div>
+				        		<div class="modal-footer">
+				        			<form method="POST" action="">
+				        				<input type="hidden" name="detalle" value="{{producto.pk}}">
+				        				<div class="row centro">
+											<input type="submit" class="btn btn-primary text-blue fondo-transp" value="Guardar">
+										</div>
+				        			</form>
+				        		</div>
+				      		</div>
+				    	</div>
+				  </div>
+				  <!-- End Modal -->
+				</td>
+			</tbody>
+			{% endfor %}
+		</table>
+		{% endif %}
+	</div>
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div id="iniciotwo" class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="jumbotron">
+			<h1 class="centro">Factura de orden enviada:</h1>
+	  		<p class="centro"></p>
+	  		<div class="row">
+	  			<p class="centro"><a class="btn btn-primary dropdown-toggle btn-lg" href="{% url 'bien:orden_list' %}" role="button">Lista Ordenes</a></p>
+	  		</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

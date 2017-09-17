@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock %}
+
+{%  block content %}
+	<div id="iniciotwo" class="main">
+		<div class="row">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				{% if object_list %}
+					{% for noticia in object_list %}
+						{% if forloop.counter0|divisibleby:3 %}
+							<div class="row">
+						{% endif %}
+						 	 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						    	<div class="thumbnail">
+						    		<img src="{{ noticia.foto.url }}" class="img-rounded img-responsive">
+						      		<div class="caption">
+						      			<a href="{% url 'bien:noticia_detail' noticia.slug noticia.pk %}"><h3 class="panel-title centro">{{ noticia.titulo|escape|title }}</h3></a>
+						      			<br>
+						        		<p class="justificado">{{ noticia.resumen|escape }}</p>
+						      		</div>
+						    	</div>
+						  	</div>
+						{% if forloop.counter|divisibleby:3 %}
+							</div>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+		</div>
+	</div>
+{% endblock %}

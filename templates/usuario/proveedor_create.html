@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+{% include 'include/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div id="iniciotwo" class="row">
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title centro">Nuevo Proveedor</h3>
+			</div>
+			<div class="panel-body bordes">
+				<form method="POST">
+				{% csrf_token %}
+					<div class="row">
+						<div class="form-group">
+							<label>Nombre</label>
+							<input id="{{form.nombre.id_for_label}}" name="{{form.nombre.html_name}}" type="text" class="form-control" placeholder="Nombre" maxlength="30">	
+						</div>
+					</div>
+					<ol style="list-style-type:none">
+					{% for error in form.nombre.errors%}
+						<li>
+							<div class="alert alert-danger" role="alert"><strong class="error">{{ error|escape }}</strong></div>
+						</li>
+					{% endfor %}
+					</ol>
+					<div class="row">
+						<div class="form-group">
+							<label>E-mail</label>
+							<input id="{{form.email.id_for_label}}" name="{{form.email.html_name}}" type="text" class="form-control" placeholder="E-mail">
+						</div>
+					</div>
+					<ol style="list-style-type:none">
+					{% for error in form.email.errors%}
+						<li>
+							<div class="alert alert-danger" role="alert"><strong class="error">{{ error|escape }}</strong></div>
+						</li>
+					{% endfor %}
+					</ol>
+					<div class="row">
+						<div class="form-group">
+							<label>Tel&eacute;fono</label>
+							<input id="{{form.telefono.id_for_label}}" name="{{form.telefono.html_name}}" type="text" class="form-control" placeholder="Tel&eacute;fono">
+						</div>
+					</div>
+					<ol style="list-style-type:none">
+					{% for error in form.telefono.errors%}
+						<li>
+							<div class="alert alert-danger" role="alert"><strong class="error">{{ error|escape }}</strong></div>
+						</li>
+					{% endfor %}
+					</ol>
+					<div class="row">
+						<div class="form-group">
+							<label>Pais</label>
+							<select id="id_pais_proveedor" name="pais" class="form-control">
+								<option id="0" value="">---------</option>
+								{% for pais in paises %}
+									<option value="{{pais.pk}}">{{pais.nombre}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div id="ciudades_proveedor" class="row">
+					</div>
+					<ol style="list-style-type:none">
+					{% for error in form.ciudad.errors%}
+						<li>
+							<div class="alert alert-danger" role="alert"><strong class="error">{{ error|escape }}</strong></div>
+						</li>
+					{% endfor %}
+					</ol>
+					<div class="row centro">
+						<input type="submit" class="btn btn-primary text-blue fondo-transp" value="Guardar">
+					</div>
+				</form>	
+			</div>
+		</div>
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

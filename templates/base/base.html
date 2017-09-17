@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+		<title>{% block title %} Ingenier&iacute;a GPP {% endblock %}</title>
+	</head>
+	<body>
+		{% block header %}
+		{% endblock %}
+		{% block content %}
+		{% endblock %}
+	</body>
+	<footer>
+        {% block footer %}
+        	<div class="row page-header text-center row fondo-blue">
+        		<div class="copyrights" style="margin-top:25px;">
+	            	<p class="text-blanco">Ingenier&iacute;a GPP, Santa Marta - Colombia <br>
+	            	<span>e-mail: ventas@inggpp.com</span><br>
+	                <span>Tel: 448-0987</span><br>
+            		<span>Carrera 1 # 22-19</span><br></p>
+        		</div>
+        	</div>
+		{% endblock %}
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+		</script>
+		<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}">
+		</script>
+		<script type="text/javascript" src="{% static 'js/eventos.js' %}"></script>		
+	</footer>
+</html>

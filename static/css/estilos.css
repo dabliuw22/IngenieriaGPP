@@ -1,0 +1,58 @@
+
+.fondo-transp{ 
+	background: transparent;
+}
+
+.fondo-blue{
+	background: #2e6da4;	
+}
+
+.text-green{
+	color: #4cae4c;
+}
+
+.text-blue{
+	color: #2e6da4;
+}
+
+.text-red{
+	color: #d43f3a;
+}
+
+.text-blanco{
+	color: #FFFFFF;
+}
+
+.justificado{
+	text-align: justify;
+}
+
+.carousel-inner .item img {
+	object-fit: scale-down;
+	height: 50vh;
+	width: 100%;
+}
+
+.aling-ver{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.centro{
+	text-align: center;
+}
+
+.bordes{
+	margin-left: 30px;
+  	margin-right: 30px;
+}
+
+#inicio{
+	padding-top : 20px;	
+}
+
+#iniciotwo{
+	padding-top : 60px;	
+}
