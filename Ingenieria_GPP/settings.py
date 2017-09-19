@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db_ingenieria_gpp',
         'USER': 'root',
-        'PASSWORD': 'barcelona22',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': 3306
     }
@@ -129,9 +129,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'wleylop22@gmail.com'
-#DEFAULT_FROM_EMAIL = 'wleylop22@gmail.com'
-EMAIL_HOST_PASSWORD = 'barcelona22'
+EMAIL_HOST_USER = 'youremail@mail.com'
+#DEFAULT_FROM_EMAIL = 'youremail@mail.com'
+EMAIL_HOST_PASSWORD = 'yourpassword'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 #Para el login, a donde nos va a llevar después de logiarnos
